@@ -1,4 +1,16 @@
+Note:  When you declare the array in the following manner:
 
+int array[5] = {};  
+the memory for the variable named array is allocated on the stack. When the function or the enclosing scope ends, the variable is destroyed and the memory is reclaimed.
+However, when you declare an array using the following syntax:
+
+int *array = new int[5];  
+The memory for the variable is allocated on the heap. Now it becomes the programmer’s responsibility to delete that memory; if you fail to delete it, it becomes a memory leak.
+In case of the pointer based syntax, you can repeatedly delete and reallocate, as well; it allows you to have variable length arrays using the same variable.
+ 
+    
+    
+Code:
 
 #include<bits/stdc++.h>
 using namespace std;
