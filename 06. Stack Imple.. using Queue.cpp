@@ -61,64 +61,39 @@ int main()
 
 
 
+Leetcode Solution :
 
-         Leetcode Solution :
+Noted:  We can make push operation heavy O(n) as that implementation would make other functions O(1).
 
-            class MyQueue {
+class MyStack {
+public:
+    MyStack() 
+    {
+        
+    }
+    queue<int>q;
+    void push(int x) 
+    {
+        q.push(x);
+        for(int i=0; i<q.size()-1; i++)
+        {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+    
+    int pop() {
+        int elem = q.front();
+        q.pop();
+        return elem;
+    }
+    
+    int top() {
+        return q.front();
+    }
+    
+    bool empty() {
+        return q.empty();
+    }
+};
 
-            public:
-                stack<int>st1;
-                stack<int>st2;
-
-                MyQueue() {
-
-                }
-
-                void push(int x) {
-                    st1.push(x);
-                }
-
-                int pop() 
-                {
-                    if(st2.empty()){
-                        while(!st1.empty())
-                        {
-                           st2.push(st1.top());
-                            st1.pop();     
-                        }
-                    }
-
-                    int elm = st2.top();
-                    st2.pop();
-                    return elm;
-                }
-
-                int peek() 
-                {
-                    if(st2.empty()){
-                    while(!st1.empty())
-                    {
-                        st2.push(st1.top());
-                        st1.pop();
-                    }
-                    }
-                    return st2.top();
-                }
-
-
-                bool empty() 
-                {
-                    if(st1.empty() )return st2.empty();
-                       return false;
-                }
-
-            };
-
-            /**
-             * Your MyQueue object will be instantiated and called as such:
-             * MyQueue* obj = new MyQueue();
-             * obj->push(x);
-             * int param_2 = obj->pop();
-             * int param_3 = obj->peek();
-             * bool param_4 = obj->empty();
-             */
